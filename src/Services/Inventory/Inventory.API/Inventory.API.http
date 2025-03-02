@@ -1,0 +1,77 @@
+@Inventory.API_HostAddress = https://localhost:7003
+
+### Lấy danh sách tất cả các kho
+GET {{Inventory.API_HostAddress}}/api/warehouse
+Accept: application/json
+
+### Tạo kho mới
+POST {{Inventory.API_HostAddress}}/api/warehouse
+Content-Type: application/json
+
+{
+  "name": "Kho Hà Nội",
+  "location": "Hà Nội, Việt Nam",
+  "description": "Kho chính tại miền Bắc"
+}
+
+### Lấy thông tin kho theo ID
+GET {{Inventory.API_HostAddress}}/api/warehouse/1
+Accept: application/json
+
+### Lấy danh sách tất cả các mục kho
+GET {{Inventory.API_HostAddress}}/api/inventory/items
+Accept: application/json
+
+### Tạo mục kho mới
+POST {{Inventory.API_HostAddress}}/api/inventory/items
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "productName": "iPhone 15 Pro",
+  "sku": "IP15PRO-128-BLK"
+}
+
+### Lấy thông tin mục kho theo ProductID
+GET {{Inventory.API_HostAddress}}/api/inventory/items/1
+Accept: application/json
+
+### Thêm hàng tồn kho
+POST {{Inventory.API_HostAddress}}/api/inventory/stock/add
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "warehouseId": 1,
+  "quantity": 100
+}
+
+### Giảm hàng tồn kho
+POST {{Inventory.API_HostAddress}}/api/inventory/stock/remove
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "warehouseId": 1,
+  "quantity": 10
+}
+
+### Lấy tổng số lượng tồn kho theo ProductID
+GET {{Inventory.API_HostAddress}}/api/inventory/stock/1
+Accept: application/json
+
+### Kiểm tra tồn kho
+GET {{Inventory.API_HostAddress}}/api/inventory/stock/check?productId=1&quantity=50
+Accept: application/json
+
+### Lấy chi tiết tồn kho theo ProductID
+GET {{Inventory.API_HostAddress}}/api/inventory/stock/1/details
+Accept: application/json
+
+### Lấy tồn kho theo WarehouseID
+GET {{Inventory.API_HostAddress}}/api/warehouse/1/stock
+Accept: application/json
+
+### Lấy lịch sử giao dịch theo ProductID
+GET {{Inventory.API_HostAddress}}/api/inventory/transactions/1
+Accept: application/json
